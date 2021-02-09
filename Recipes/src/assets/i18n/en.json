@@ -1,0 +1,19 @@
+{
+  "shared": {
+    "appTitle": "Recipessss",
+    "appDescription": "Some description for this app",
+    "appVersion": "v0"
+  },
+  "homeComponent": {
+    "titles": {
+      "mainTitle": "Home title",
+      "subTitle": "Home sub-title"
+    },
+    "actions": {
+
+    },
+    "fields": {
+
+    }
+  }
+}
