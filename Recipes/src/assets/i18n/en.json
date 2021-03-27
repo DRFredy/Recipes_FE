@@ -1,12 +1,17 @@
 {
   "shared": {
-    "appTitle": "Recipessss",
+    "language": "Language",
+    "theme": "Theme",
+    "appTitle": "Recipes",
     "appDescription": "Some description for this app",
-    "appVersion": "v0"
+    "versionComments": "Some comments about this version",
+    "actions": {
+      "cancel": "Cancel"
+    }
   },
   "homeComponent": {
     "titles": {
-      "mainTitle": "Home title",
+      "mainTitle": "Welcome to Recipes!",
       "subTitle": "Home sub-title"
     },
     "actions": {
@@ -14,6 +19,28 @@
     },
     "fields": {
 
+    }
+  },
+  "loginComponent": {
+    "titles": {
+      "mainTitle": "User login"
+    },
+    "labels": {
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "selectLoginType": "Select login type"
+    },
+    "actions": {
+      "login": "Login"
+    },
+    "messages": {
+      "is": "is",
+      "required": "required",
+      "enterValidEmailAddress": "Please enter a valid email address",
+      "enterValidUsername": "Please enter a username with at least 6 characters",
+      "loginWithEmail": "Login with email",
+      "loginWithUsername": "Login with username"
     }
   }
 }

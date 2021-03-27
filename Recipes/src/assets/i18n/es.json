@@ -1,8 +1,13 @@
 {
   "shared": {
-    "appTitle": "Recetassss",
+    "language": "Idioma",
+    "theme": "Tema",
+    "appTitle": "Recetas",
     "appDescription": "Alguna descripción para esta app",
-    "appVersion": "v0"
+    "versionComments": "Algunos comentarios sobre esta versión",
+    "actions": {
+      "cancel": "Cancelar"
+    }
   },
   "homeComponent": {
     "titles": {
@@ -14,6 +19,28 @@
     },
     "fields": {
 
+    }
+  },
+  "loginComponent": {
+    "titles": {
+      "mainTitle": "Inicio de sesión de usuario"
+    },
+    "labels": {
+      "email": "Email",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "selectLoginType": "Seleccione tipo de inicio de sesión"
+    },
+    "actions": {
+      "login": "Iniciar"
+    },
+    "messages": {
+      "is": "es",
+      "required": "requerido",
+      "enterValidEmailAddress": "Por favor ingrese una dirección de email válida",
+      "enterValidUsername": "Por favor ingrese un nombre de usuario que contenga al menos 6 caracteres",
+      "loginWithEmail": "Inicio de sesión con email",
+      "loginWithUsername": "Inicio de sesión con nombre de usuario"
     }
   }
 }

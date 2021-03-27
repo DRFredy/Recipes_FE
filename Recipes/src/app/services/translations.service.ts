@@ -1,31 +1,48 @@
 import { Injectable } from '@angular/core';
 import { TranslateService, TranslateLoader } from '@ngx-translate/core';
 import { Observable, Subject, of } from 'rxjs';
+import { LanguageModel } from '../models/language-model';
+import { Constants } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationsService {
-  readonly defaultLanguage = "en";
+  readonly defaultLanguage = Constants.ES_LANG_CODE;
+  
   private onLanguageChanged = new Subject<string>();
+  private languages: LanguageModel[] = [
+    new LanguageModel(Constants.EN_LANG_CODE, Constants.EN_LANG_NAME), 
+      new LanguageModel(Constants.ES_LANG_CODE, Constants.ES_LANG_NAME)
+  ];
+
   languageChanged$ = this.onLanguageChanged.asObservable();
 
   constructor(private translateService: TranslateService) {
-
-    this.addLanguages(['en', 'es']);
+    this.addLanguages(this.languages);
     this.setDefaultLanguage(this.defaultLanguage);
   }
 
+  getDefinedLanguageCodes() : Array<string> {
+    const langCodes: Array<string> = [];
+    this.languages.forEach(elem => {
+      langCodes.push(elem.code);
+    });
+
+    return langCodes;
+  }
+
   getLanguages() {
-    return this.translateService.getLangs();
+    return this.languages;
   }
 
   getCurrentLang() {
     return this.translateService.currentLang;
   }
 
-  addLanguages(lang: string[]) {
-    this.translateService.addLangs(lang);
+  addLanguages(langs: LanguageModel[]) {
+    const langCodes: Array<string> = this.getDefinedLanguageCodes();
+    this.translateService.addLangs(langCodes);
   }
 
   setDefaultLanguage(lang: string) {
@@ -42,9 +59,11 @@ export class TranslationsService {
 
   useBrowserLanguage(): string | void {
     let browserLang = this.getBrowserLanguage();
-    // Note: By now only english and spanish languages are supported, so the language will be changed as long as the browser language
-    // is one of the supported languages.
-    if (browserLang.match(/en|es/)) {
+    // Note: By now only english and spanish languages are supported
+    const langsForRegEx = this.getDefinedLanguageCodes().join("|");
+    //const langRegEx = new RegExp(`${ Constants.EN_LANG_CODE }|${ Constants.ES_LANG_CODE}`);
+    const langRegEx = new RegExp(langsForRegEx);
+    if (browserLang.match(langRegEx)) {
       this.changeLanguage(browserLang);
       return browserLang;
     }
@@ -86,9 +105,9 @@ export class TranslateLanguageLoader implements TranslateLoader {
     // Note Dynamic require(variable) will not work. Require is always at compile time
     switch (lang) {
       case "en":
-        return of(require("../../assets/locale/en.json"));
+        return of(require("../../assets/i18n/en.json"));
       case "es":
-        return of(require("../../assets/locale/es.json"));
+        return of(require("../../assets/i18n/es.json"));
       default:
     }
   }

@@ -1,0 +1,65 @@
+<div class="container">
+  
+  <mat-card>
+    <div class="all-centered">
+      <mat-card-title>
+        <div>{{ 'loginComponent.titles.mainTitle' | translate }}</div>
+      </mat-card-title>
+      
+      <mat-card-content>
+        <form class="login-form all-centered">
+
+          <div>
+            <label>{{ 'loginComponent.labels.selectLoginType' | translate }}: </label>
+            <mat-radio-group [formControl]="loginTypeControl">
+              <mat-radio-button value="email">{{ 'loginComponent.labels.email' | translate }}</mat-radio-button>
+              <mat-radio-button value="username">{{ 'loginComponent.labels.username' | translate }}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field class="login-form-full-width" *ngIf="loginTypeControl.value == 'email'">
+            <mat-label>{{ 'loginComponent.labels.email' | translate }}</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ex. sam@example.com">
+            <mat-hint>{{ 'loginComponent.messages.loginWithEmail' | translate }}</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              {{ 'loginComponent.messages.enterValidEmailAddress' | translate }}
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              {{ 'loginComponent.labels.email' | translate }} {{ 'loginComponent.messages.is' | translate }} <strong>{{ 'loginComponent.messages.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="login-form-full-width" *ngIf="loginTypeControl.value == 'username'">
+            <mat-label>{{ 'loginComponent.labels.username' | translate }}</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ex. sam@example.com">
+            <mat-hint>{{ 'loginComponent.messages.loginWithUsername' | translate }}</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('minLength') && !emailFormControl.hasError('required')">
+              {{ 'loginComponent.messages.enterValidUsername' | translate }}
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              {{ 'loginComponent.labels.username' | translate }} {{ 'loginComponent.messages.is' | translate }} <strong>{{ 'loginComponent.messages.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="login-form-full-width">
+            <mat-label>{{ 'loginComponent.labels.password' | translate }}</mat-label>
+            <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              {{ 'loginComponent.labels.password' | translate }} {{ 'loginComponent.messages.is' | translate }} <strong>{{ 'loginComponent.messages.required' | translate }}</strong>
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </mat-card-content>      
+    </div>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">{{ 'loginComponent.actions.login' | translate }}</button>
+      <button mat-raised-button>{{ 'shared.actions.cancel' | translate }}</button>
+    </mat-card-actions>
+
+  </mat-card>
+
+
+</div>

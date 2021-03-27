@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VersionInfoModel } from '../../models/version-info.model';
+import { FileLoaderService } from '../../services/file-loader.service';
 import { TranslationsService } from '../../services/translations.service';
 
 @Component({
@@ -8,9 +10,17 @@ import { TranslationsService } from '../../services/translations.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private transl8Service: TranslationsService) { }
+  versionInfo: VersionInfoModel;
+  
+  constructor(public transl8Service: TranslationsService,
+    private fileLoader: FileLoaderService) { }
 
   ngOnInit(): void {
+    this.fileLoader.getJsonContents<VersionInfoModel>('version-info/version-info.json').subscribe(data => {
+        this.versionInfo = data;
+    });
   }
 
 }
+
+
