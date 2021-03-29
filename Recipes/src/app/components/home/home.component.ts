@@ -11,7 +11,7 @@ import { TranslationsService } from '../../services/translations.service';
 export class HomeComponent implements OnInit {
 
   versionInfo: VersionInfoModel;
-  
+
   constructor(public transl8Service: TranslationsService,
     private fileLoader: FileLoaderService) { }
 

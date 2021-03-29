@@ -1,29 +1,34 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { FileLoaderService } from './services/file-loader.service';
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+
+// Services
+import { FileLoaderService } from './services/file-loader.service';
+import { MeasureTypesService } from './services/measure-types.service';
+
+// Components
 import { AppComponent } from './components/app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MaterialModule } from './modules/material/material.module';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { MeasureTypesComponent } from './components/measure-types/measure-types.component';
+import { HttpRequestInterceptor } from './services/http-interceptors';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ToolbarComponent,
-    LoginComponent
+    LoginComponent,
+    MeasureTypesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +46,11 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
     FormsModule, 
     ReactiveFormsModule
   ],
-  providers: [FileLoaderService,
-    {
-      provide: MAT_RADIO_DEFAULT_OPTIONS,
-      useValue: { color: 'primary' }}
+  providers: [
+    FileLoaderService,
+    MeasureTypesService,
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
