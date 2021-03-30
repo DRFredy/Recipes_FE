@@ -7,6 +7,16 @@
     "versionComments": "Some comments about this version",
     "actions": {
       "cancel": "Cancel"
+    },
+    "grid": {
+      "labels": {
+        "itemsPerPage": "Items per page",
+        "firstPage": "First page",
+        "lastPage": "Last page",
+        "nextPage": "Next page",
+        "previousPage": "Previous page",
+        "of": "of"
+      }
     }
   },
   "homeComponent": {
@@ -41,6 +51,21 @@
       "enterValidUsername": "Please enter a username with at least 6 characters",
       "loginWithEmail": "Login with email",
       "loginWithUsername": "Login with username"
+    }
+  },
+  "measureTypesComponent": {
+    "titles" : {
+      "mainTitle": "Measure Types"
+    },
+    "labels": {
+    },
+    "columns": {
+      "id": "Id",
+      "name": "Name"
+    },
+    "actions": {
+    },
+    "messages": {
     }
   }
 }

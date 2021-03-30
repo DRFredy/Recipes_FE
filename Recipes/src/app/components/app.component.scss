@@ -2,4 +2,12 @@
 
 .content {
   background-color: $genBGColor;
+  height: calc(100vh - 120px); //100vh - 60px (toolbar) - 60px (footer)
+}
+
+#outerContainer {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
 }

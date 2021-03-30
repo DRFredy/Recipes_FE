@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { EndpointNames, TypeNames } from '../constants/constants';
 import { HttpResponseModel } from '../models/http-response.model';
 import { EndpointBase, APIs } from './endpoint-base';

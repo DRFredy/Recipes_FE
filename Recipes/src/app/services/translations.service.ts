@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { TranslateService, TranslateLoader, LangChangeEvent } from '@ngx-translate/core';
 import { Observable, Subject, of } from 'rxjs';
 import { LanguageModel } from '../models/language-model';
 import { Constants } from '../constants/constants';
@@ -21,6 +21,8 @@ export class TranslationsService {
   constructor(private translateService: TranslateService) {
     this.addLanguages(this.languages);
     this.setDefaultLanguage(this.defaultLanguage);
+    //this.setCurrentLang(this.defaultLanguage);
+    this.translateService.use(this.defaultLanguage);
   }
 
   getDefinedLanguageCodes() : Array<string> {
@@ -34,6 +36,10 @@ export class TranslationsService {
 
   getLanguages() {
     return this.languages;
+  }
+
+  setCurrentLang(lang: string) {
+    this.translateService.currentLang = lang;
   }
 
   getCurrentLang() {
@@ -87,6 +93,10 @@ export class TranslationsService {
     }
 
     return language;
+  }
+
+  get onLangChange(): EventEmitter<LangChangeEvent> {
+    return this.translateService.onLangChange;
   }
 
   getTranslation(key: string | Array<string>, interpolateParams?: Object): string | any {

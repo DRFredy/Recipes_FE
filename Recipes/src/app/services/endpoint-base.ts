@@ -55,18 +55,23 @@ export class EndpointBase {
   protected executeGet<T>(url: string): Observable<T> {
     const headers = this.getHeaders();
 
+    // return this.http.get<T>(url, headers)
+    //   .pipe(
+    //     //retry(3), // retry a failed request up to 3 times
+    //     catchError(this.handleError) // then handle the error
+    //     ,
+    //   retryWhen(err => interval(500).pipe(
+    //     take(3),
+    //     tap((a) => {
+    //       console.log(`Retry attempt ${a + 1}:  At ${new Date().toISOString()}.`);
+    //     })
+    //   )
+    //   ));
+    
     return this.http.get<T>(url, headers)
-      .pipe(
-        //retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
-        ,
-      retryWhen(err => interval(500).pipe(
-        take(3),
-        tap((a) => {
-          console.log(`Retry attempt ${a + 1}:  At ${new Date().toISOString()}.`);
-        })
-      )
-      ));
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   protected executePost<T>(url: string, body: any): Observable<T> {

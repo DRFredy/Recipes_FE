@@ -7,6 +7,16 @@
     "versionComments": "Algunos comentarios sobre esta versión",
     "actions": {
       "cancel": "Cancelar"
+    },
+    "grid": {
+      "labels": {
+        "itemsPerPage": "Items por página",
+        "firstPage": "Primera página",
+        "lastPage": "Ultima página",
+        "nextPage": "Siguiente página",
+        "previousPage": "Página anterior",
+        "of": "de"
+      }
     }
   },
   "homeComponent": {
@@ -41,6 +51,21 @@
       "enterValidUsername": "Por favor ingrese un nombre de usuario que contenga al menos 6 caracteres",
       "loginWithEmail": "Inicio de sesión con email",
       "loginWithUsername": "Inicio de sesión con nombre de usuario"
+    }
+  },
+  "measureTypesComponent": {
+    "titles" : {
+      "mainTitle": "Tipos de medidas"
+    },
+    "labels": {
+    },
+    "columns": {
+      "id": "Id",
+      "name": "Nombre"
+    },
+    "actions": {
+    },
+    "messages": {
     }
   }
 }
